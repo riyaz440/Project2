@@ -1,0 +1,572 @@
+<div class="wrap">
+  <p class="hint">Pull the string or click the lamp to toggle login</p>
+
+  <div class="stage">
+    <div class="lamp-col">
+      <div class="beam" id="beam"></div>
+
+      <svg class="lamp" id="lampBtn" role="button" tabindex="0" aria-label="Toggle lamp" viewBox="0 0 260 400" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="metalPole" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#0c0c0d"/>
+            <stop offset="18%" stop-color="#3a3a3c"/>
+            <stop offset="42%" stop-color="#6b6b6d"/>
+            <stop offset="52%" stop-color="#8c8c8e"/>
+            <stop offset="65%" stop-color="#3f3f41"/>
+            <stop offset="100%" stop-color="#101011"/>
+          </linearGradient>
+
+          <linearGradient id="baseMetal" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#4a4a4c"/>
+            <stop offset="45%" stop-color="#232324"/>
+            <stop offset="100%" stop-color="#0a0a0a"/>
+          </linearGradient>
+
+          <radialGradient id="baseTop" cx="35%" cy="30%" r="80%">
+            <stop offset="0%" stop-color="#7a7a7c"/>
+            <stop offset="55%" stop-color="#333335"/>
+            <stop offset="100%" stop-color="#111112"/>
+          </radialGradient>
+
+          <linearGradient id="shadeTop" x1="0" y1="0" x2="1" y2="0.15">
+            <stop offset="0%" stop-color="#232221"/>
+            <stop offset="35%" stop-color="#4b4744"/>
+            <stop offset="52%" stop-color="#68635d"/>
+            <stop offset="68%" stop-color="#3c3936"/>
+            <stop offset="100%" stop-color="#161514"/>
+          </linearGradient>
+
+          <linearGradient id="shadeRim" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#141312"/>
+            <stop offset="48%" stop-color="#57524c"/>
+            <stop offset="55%" stop-color="#726b62"/>
+            <stop offset="100%" stop-color="#0d0c0b"/>
+          </linearGradient>
+
+          <radialGradient id="bulbOff" cx="42%" cy="35%" r="65%">
+            <stop offset="0%" stop-color="#54524c"/>
+            <stop offset="60%" stop-color="#2b2a27"/>
+            <stop offset="100%" stop-color="#141312"/>
+          </radialGradient>
+
+          <radialGradient id="bulbOn" cx="42%" cy="35%" r="65%">
+            <stop offset="0%" stop-color="#fffdf3"/>
+            <stop offset="35%" stop-color="#ffe6a0"/>
+            <stop offset="70%" stop-color="#ffb020"/>
+            <stop offset="100%" stop-color="#c97a10"/>
+          </radialGradient>
+
+          <radialGradient id="haloGrad" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="rgba(255,214,140,0.95)"/>
+            <stop offset="40%" stop-color="rgba(255,180,50,0.55)"/>
+            <stop offset="100%" stop-color="rgba(255,176,32,0)"/>
+          </radialGradient>
+
+          <radialGradient id="haloGradSoft" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="rgba(255,190,100,0.5)"/>
+            <stop offset="60%" stop-color="rgba(255,160,40,0.18)"/>
+            <stop offset="100%" stop-color="rgba(255,150,30,0)"/>
+          </radialGradient>
+
+          <radialGradient id="shadeInner" cx="50%" cy="20%" r="80%">
+            <stop offset="0%" stop-color="#ffdd9a"/>
+            <stop offset="55%" stop-color="#c8792a"/>
+            <stop offset="100%" stop-color="#2a1c10"/>
+          </radialGradient>
+
+          <radialGradient id="floorShadow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="rgba(0,0,0,0.55)"/>
+            <stop offset="100%" stop-color="rgba(0,0,0,0)"/>
+          </radialGradient>
+
+          <filter id="softBlur" x="-100%" y="-100%" width="300%" height="300%">
+            <feGaussianBlur stdDeviation="10"/>
+          </filter>
+        </defs>
+
+        <ellipse cx="130" cy="382" rx="78" ry="11" fill="url(#floorShadow)"/>
+
+        <ellipse cx="130" cy="360" rx="58" ry="13" fill="url(#baseMetal)"/>
+        <ellipse cx="130" cy="354" rx="58" ry="13" fill="url(#baseTop)"/>
+        <ellipse cx="130" cy="354" rx="58" ry="13" fill="none" stroke="#050505" stroke-width="1" opacity="0.6"/>
+
+        <rect x="126" y="128" width="8" height="228" rx="4" fill="url(#metalPole)"/>
+        <rect x="126" y="128" width="2.4" height="228" fill="#a9a9ab" opacity="0.55"/>
+
+        <g id="haloGroup" class="halo">
+          <circle cx="130" cy="122" r="150" fill="url(#haloGradSoft)" filter="url(#softBlur)"/>
+          <ellipse cx="130" cy="112" rx="115" ry="85" fill="url(#haloGrad)"/>
+        </g>
+
+        <line x1="134" y1="128" x2="66" y2="108" stroke="#8c857b" stroke-width="1.6" opacity="0.85"/>
+        <line x1="126" y1="128" x2="194" y2="108" stroke="#8c857b" stroke-width="1.6" opacity="0.85"/>
+
+        <path d="M 40 96 Q 130 128 220 96 L 205 118 Q 130 144 55 118 Z" fill="url(#shadeTop)"/>
+        <ellipse cx="130" cy="96" rx="90" ry="20" fill="url(#shadeRim)"/>
+        <ellipse cx="130" cy="94" rx="90" ry="20" fill="none" stroke="#8c857b" stroke-width="0.6" opacity="0.5"/>
+        <ellipse id="shadeUnder" cx="130" cy="118" rx="76" ry="15" fill="#0c0b0a"/>
+        <ellipse id="shadeUnderGlow" cx="130" cy="117" rx="72" ry="13" fill="url(#shadeRim)" opacity="0.9"/>
+
+        <rect x="124" y="119" width="12" height="12" rx="2" fill="#1c1a17"/>
+        <circle id="bulb" cx="130" cy="130" r="24" fill="url(#bulbOff)"/>
+        <ellipse cx="122" cy="121" rx="6" ry="3.5" fill="#fff" opacity="0.4"/>
+
+        <g id="cord" class="cord-group">
+          <path class="cord-line" d="M 198 106 Q 210 165 204 228" fill="none" stroke="#7a7469" stroke-width="2"/>
+          <circle class="cord-tip" cx="204" cy="228" r="7" fill="#e8c88a"/>
+        </g>
+      </svg>
+
+      <div class="glow-pool" id="pool"></div>
+    </div>
+
+    <div class="card" id="card">
+      <div id="formView">
+        <h2>Welcome Back</h2>
+
+        <input type="text" id="nameInput" name="name" placeholder="Full Name" autocomplete="name" />
+        <div class="error" id="nameError"></div>
+
+        <input type="email" id="emailInput" name="email" placeholder="Email Address" autocomplete="email" />
+        <div class="error" id="emailError"></div>
+
+        <div class="pw-field">
+          <input type="password" id="passwordInput" placeholder="Create Password" autocomplete="new-password" />
+          <span class="eye" data-target="passwordInput">&#128065;</span>
+        </div>
+        <div class="error" id="passwordError"></div>
+
+        <div class="pw-field">
+          <input type="password" id="confirmInput" placeholder="Confirm Password" autocomplete="new-password" />
+          <span class="eye" data-target="confirmInput">&#128065;</span>
+        </div>
+        <div class="error" id="confirmError"></div>
+
+        <a class="forgot" href="#">Forgot Password?</a>
+        <button class="signin" id="signinBtn">SIGN IN</button>
+        <div class="or">or</div>
+        <button class="google">
+          <span class="g">G</span> Continue with Google
+        </button>
+      </div>
+
+      <div id="successView" class="success-view">
+        <div class="success-icon">&#10003;</div>
+        <h2>You're in</h2>
+        <p id="successMsg">Thanks for signing <span id="userName">there</span>, this is Riyaz</p>
+        <button class="signin" id="backBtn">Back to form</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  :root{
+    --bg: #0b0a08;
+    --amber: #ffb020;
+    --amber-soft: #ffd27a;
+    --card-bg: #17140f;
+    --card-border: #2a251b;
+    --ink-dim: #8a8378;
+  }
+
+  *{ box-sizing: border-box; }
+
+  .wrap{
+    background: var(--bg);
+    min-height: 640px;
+    padding: 40px 20px 60px;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    color: #eee;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hint{
+    text-align:center;
+    letter-spacing: 3px;
+    font-size: 11px;
+    color: #6b6558;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+  }
+
+  .stage{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap: 80px;
+    flex-wrap: wrap;
+    position: relative;
+  }
+
+  .lamp-col{
+    position: relative;
+    width: 260px;
+    height: 420px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
+
+  /* light beam cone, anchored under the bulb */
+  .beam{
+    position:absolute;
+    top: 148px;
+    left: 50%;
+    width: 320px;
+    height: 270px;
+    transform: translateX(-50%);
+    clip-path: polygon(46% 0%, 54% 0%, 94% 100%, 6% 100%);
+    background: linear-gradient(180deg, rgba(255,210,130,0.65), rgba(255,165,55,0.22) 55%, transparent 85%);
+    opacity: 0;
+    transition: opacity .7s ease;
+    pointer-events:none;
+    mix-blend-mode: screen;
+  }
+  .wrap.on .beam{ opacity: 1; }
+
+  .glow-pool{
+    position:absolute;
+    bottom: 46px;
+    left: 50%;
+    width: 280px;
+    height: 50px;
+    transform: translateX(-50%);
+    background: radial-gradient(ellipse, rgba(255,185,90,0.55), transparent 72%);
+    filter: blur(8px);
+    opacity: 0;
+    transition: opacity .7s ease;
+    mix-blend-mode: screen;
+  }
+  .wrap.on .glow-pool{ opacity: 1; }
+
+  .lamp{
+    position: relative;
+    z-index: 2;
+    cursor: pointer;
+    width: 260px;
+    height: 400px;
+    overflow: visible;
+  }
+  .lamp:focus{ outline: none; }
+  .lamp:focus-visible{ filter: drop-shadow(0 0 0 2px var(--amber)); }
+
+  #bulb{
+    transition: fill 0.6s ease;
+  }
+  .wrap.on #bulb{ fill: url(#bulbOn); }
+
+  #shadeUnderGlow{
+    transition: fill 0.6s ease, opacity 0.6s ease;
+  }
+  .wrap.on #shadeUnderGlow{ fill: url(#shadeInner); opacity: 1; }
+
+  #haloGroup{
+    opacity: 0;
+    transition: opacity 0.7s ease;
+  }
+  .wrap.on #haloGroup{ opacity: 1; }
+
+  .cord-group{
+    transform-origin: 198px 106px;
+    transition: transform .35s cubic-bezier(.34,1.56,.64,1);
+  }
+  .lamp:hover .cord-group{ transform: rotate(-4deg); }
+  .cord-group.pulled{ transform: rotate(3deg) scaleY(1.05); }
+
+  .cord-tip{
+    transition: filter 0.4s ease;
+  }
+  .wrap.on .cord-tip{
+    filter: drop-shadow(0 0 6px rgba(255,210,122,0.9));
+  }
+
+  /* login card */
+  .card{
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 20px;
+    padding: 32px 30px 26px;
+    width: 300px;
+    box-shadow: 0 20px 60px rgba(0,0,0,.5);
+    opacity: 0;
+    transform: translateY(24px) scale(.96);
+    pointer-events: none;
+    filter: blur(2px);
+    transition: opacity .5s cubic-bezier(.16,1,.3,1), transform .5s cubic-bezier(.16,1,.3,1), filter .5s ease;
+  }
+  .wrap.on .card{
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+    filter: blur(0);
+  }
+
+  .card h2{
+    text-align:center;
+    margin: 0 0 20px;
+    font-size: 20px;
+    font-weight: 600;
+  }
+
+  .card input{
+    width:100%;
+    padding: 12px 14px;
+    margin-bottom: 14px;
+    border-radius: 10px;
+    border: 1px solid #2c2820;
+    background: #0f0d0a;
+    color: #eee;
+    font-size: 13px;
+    outline: none;
+  }
+  .card input::placeholder{ color: #6b6558; }
+  .card input:focus{ border-color: var(--amber); }
+
+  .pw-field{ position: relative; }
+  .pw-field input{ padding-right: 38px; }
+  .eye{
+    position:absolute;
+    right: 14px;
+    top: 12px;
+    font-size: 13px;
+    opacity: .6;
+    cursor: pointer;
+    margin-top: -2px;
+    user-select: none;
+  }
+
+  .error{
+    color: #ff8f7a;
+    font-size: 11px;
+    min-height: 14px;
+    margin: -9px 0 10px 2px;
+  }
+
+  .card input.invalid{
+    border-color: #c94b3f;
+  }
+
+  .success-view{
+    display: none;
+    text-align: center;
+    padding: 10px 0 4px;
+  }
+  .success-view.show{ display: block; }
+  #formView.hide{ display: none; }
+
+  .success-icon{
+    width: 52px;
+    height: 52px;
+    line-height: 52px;
+    border-radius: 50%;
+    background: rgba(255,176,32,0.15);
+    color: var(--amber);
+    font-size: 24px;
+    margin: 0 auto 16px;
+    border: 1px solid rgba(255,176,32,0.4);
+  }
+
+  .success-view h2{ margin-bottom: 8px; }
+
+  .success-view p{
+    color: #d9d2c4;
+    font-size: 14px;
+    margin: 0 0 22px;
+  }
+
+  .forgot{
+    display:block;
+    text-align:right;
+    font-size: 12px;
+    color: var(--amber-soft);
+    text-decoration: none;
+    margin-bottom: 18px;
+  }
+
+  .signin{
+    width:100%;
+    padding: 13px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #7b5cff, #b06cff);
+    color: white;
+    font-weight: 700;
+    letter-spacing: .5px;
+    font-size: 13px;
+    cursor: pointer;
+  }
+
+  .or{
+    text-align:center;
+    color: var(--ink-dim);
+    font-size: 11px;
+    margin: 14px 0;
+  }
+
+  .google{
+    width:100%;
+    padding: 11px;
+    border-radius: 10px;
+    border: 1px solid #2c2820;
+    background: #0f0d0a;
+    color: #ddd;
+    font-size: 13px;
+    cursor: pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap: 8px;
+  }
+  .g{ font-weight: 800; color: #4285F4; }
+
+  @media (prefers-reduced-motion: reduce){
+    .beam, .glow-pool, #bulb, #haloGroup, .cord-group, .cord-tip, .card{ transition: none !important; }
+  }
+</style>
+
+<script>
+  (function(){
+    const wrap = document.querySelector('.wrap');
+    const lampBtn = wrap.querySelector('#lampBtn');
+    const cord = wrap.querySelector('#cord');
+
+    function toggle(){
+      wrap.classList.toggle('on');
+      cord.classList.add('pulled');
+      setTimeout(() => cord.classList.remove('pulled'), 350);
+    }
+
+    lampBtn.addEventListener('click', toggle);
+    lampBtn.addEventListener('keydown', (e) => {
+      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+    });
+
+    // password show/hide
+    wrap.querySelectorAll('.eye').forEach(eye => {
+      eye.addEventListener('click', () => {
+        const input = wrap.querySelector('#' + eye.dataset.target);
+        const isHidden = input.type === 'password';
+        input.type = isHidden ? 'text' : 'password';
+        eye.textContent = isHidden ? '🙈' : '👁';
+      });
+    });
+
+    // sign up validation
+    const nameInput = wrap.querySelector('#nameInput');
+    const nameError = wrap.querySelector('#nameError');
+    const emailInput = wrap.querySelector('#emailInput');
+    const passwordInput = wrap.querySelector('#passwordInput');
+    const confirmInput = wrap.querySelector('#confirmInput');
+    const emailError = wrap.querySelector('#emailError');
+    const passwordError = wrap.querySelector('#passwordError');
+    const confirmError = wrap.querySelector('#confirmError');
+    const signinBtn = wrap.querySelector('#signinBtn');
+    const backBtn = wrap.querySelector('#backBtn');
+    const formView = wrap.querySelector('#formView');
+    const successView = wrap.querySelector('#successView');
+
+    function setError(input, errorEl, message){
+      errorEl.textContent = message;
+      input.classList.toggle('invalid', Boolean(message));
+    }
+
+    function clearErrorOnInput(input, errorEl){
+      input.addEventListener('input', () => setError(input, errorEl, ''));
+    }
+    clearErrorOnInput(nameInput, nameError);
+    clearErrorOnInput(emailInput, emailError);
+    clearErrorOnInput(passwordInput, passwordError);
+    clearErrorOnInput(confirmInput, confirmError);
+
+    function validate(){
+      let ok = true;
+      const nameVal = nameInput.value.trim();
+      const emailVal = emailInput.value.trim();
+      const passVal = passwordInput.value;
+      const confirmVal = confirmInput.value;
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if(!nameVal){
+        setError(nameInput, nameError, 'Enter your name.');
+        ok = false;
+      } else {
+        setError(nameInput, nameError, '');
+      }
+
+      if(!emailVal){
+        setError(emailInput, emailError, 'Enter your email address.');
+        ok = false;
+      } else if(!emailPattern.test(emailVal)){
+        setError(emailInput, emailError, 'Enter a valid email address.');
+        ok = false;
+      } else {
+        setError(emailInput, emailError, '');
+      }
+
+      if(!passVal){
+        setError(passwordInput, passwordError, 'Create a password.');
+        ok = false;
+      } else if(passVal.length < 6){
+        setError(passwordInput, passwordError, 'Password must be at least 6 characters.');
+        ok = false;
+      } else {
+        setError(passwordInput, passwordError, '');
+      }
+
+      if(!confirmVal){
+        setError(confirmInput, confirmError, 'Confirm your password.');
+        ok = false;
+      } else if(confirmVal !== passVal){
+        setError(confirmInput, confirmError, 'Passwords do not match.');
+        ok = false;
+      } else {
+        setError(confirmInput, confirmError, '');
+      }
+
+      return ok;
+    }
+
+    const userNameSpan = wrap.querySelector('#userName');
+
+    function nameFromEmail(email){
+      const local = email.split('@')[0] || '';
+      const cleaned = local.replace(/[._\-+0-9]+/g, ' ').trim();
+      if(!cleaned) return 'there';
+      return cleaned
+        .split(' ')
+        .filter(Boolean)
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+        .join(' ');
+    }
+
+    function displayName(){
+      const typed = nameInput.value.trim();
+      if(typed){
+        return typed
+          .split(' ')
+          .filter(Boolean)
+          .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+          .join(' ');
+      }
+      return nameFromEmail(emailInput.value.trim());
+    }
+
+    signinBtn.addEventListener('click', () => {
+      if(!validate()) return;
+      userNameSpan.textContent = displayName();
+      formView.classList.add('hide');
+      successView.classList.add('show');
+    });
+
+    backBtn.addEventListener('click', () => {
+      successView.classList.remove('show');
+      formView.classList.remove('hide');
+      nameInput.value = '';
+      emailInput.value = '';
+      passwordInput.value = '';
+      confirmInput.value = '';
+    });
+  })();
+</script>
